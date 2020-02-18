@@ -29,6 +29,7 @@ commands:
           command: |
             gem install bundler -v 2.1.4
             bundler -v
+            which bundler
             bundle check || bundle install
             bundle clean --force
       - save_cache:
