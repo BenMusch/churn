@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_18_025422) do
+ActiveRecord::Schema.define(version: 2020_02_18_040804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,16 @@ ActiveRecord::Schema.define(version: 2020_02_18_025422) do
     t.index ["rewards_filter_id"], name: "index_rewards_percentages_on_rewards_filter_id"
   end
 
+  create_table "rewards_points", force: :cascade do |t|
+    t.bigint "card_id", null: false
+    t.float "points_per_dollar"
+    t.bigint "rewards_filter_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["card_id"], name: "index_rewards_points_on_card_id"
+    t.index ["rewards_filter_id"], name: "index_rewards_points_on_rewards_filter_id"
+  end
+
   create_table "rewards_points_payouts", force: :cascade do |t|
     t.integer "dollars_per_point"
     t.bigint "rewards_points_type_id", null: false
@@ -100,6 +110,8 @@ ActiveRecord::Schema.define(version: 2020_02_18_025422) do
   add_foreign_key "rewards_filter_categories", "rewards_filters"
   add_foreign_key "rewards_percentages", "cards"
   add_foreign_key "rewards_percentages", "rewards_filters"
+  add_foreign_key "rewards_points", "cards"
+  add_foreign_key "rewards_points", "rewards_filters"
   add_foreign_key "rewards_points_payouts", "rewards_filters"
   add_foreign_key "rewards_points_payouts", "rewards_points_types"
   add_foreign_key "rewards_points_types", "institutions"

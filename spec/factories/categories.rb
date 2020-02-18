@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :category do
-    name { "MyString" }
+    name { "All purchases" }
     parent_category { nil }
-    plaid_id { "MyString" }
+    plaid_id { SecureRandom.uuid }
   end
 end
