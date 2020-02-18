@@ -28,6 +28,7 @@ commands:
           name: Install gems and remove unused gems
           command: |
             gem install bundler -v 2.1.4
+            bundler -v
             bundle check || bundle install
             bundle clean --force
       - save_cache:
