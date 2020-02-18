@@ -19,12 +19,15 @@ gem "webpacker"
 # Tools
 gem "awesome_print"
 
+gem "plaid"
+
 # Env specific dependencies...
 group :production do
   gem "rack-timeout"
 end
 
 group :development, :test do
+  gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "rspec-rails"
   gem "rspec_junit_formatter", require: false
@@ -37,9 +40,9 @@ group :development do
   gem "annotate"
   gem "better_errors"
   gem "binding_of_caller"
-  gem "dotenv-rails"
   gem "launchy"
   gem "listen"
+  gem "pry"
   gem "spring"
   gem "spring-commands-rspec"
   gem "spring-watcher-listen"

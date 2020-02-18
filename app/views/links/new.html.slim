@@ -1,0 +1,37 @@
+javascript:
+  $(document).ready(function() {
+    var handler = Plaid.create({
+      clientName: 'Churn',
+      countryCodes: ['US'],
+      env: 'sandbox',
+      key: "#{ENV['PLAID_PUBLIC_KEY']}",
+      product: ['transactions'],
+      language: 'en',
+      userLegalName: 'John Appleseed',
+      userEmailAddress: 'jappleseed@yourapp.com',
+      onLoad: function() {
+        // Optional, called when Link loads
+      },
+      onSuccess: function(public_token, metadata) {
+        $('#link_public_token').val(public_token)
+        $('#token-form').submit()
+      },
+      onExit: function(err, metadata) {
+        console.error(err, metadata)
+        alert('Error!')
+      },
+      onEvent: console.log,
+    });
+    console.log('hello??')
+    $('#link-button').click(function(e) {
+      console.log('click!', e)
+      handler.open();
+    });
+  })
+
+.hero
+  h1 Demo app
+  br
+  button#link-button.button Link an account!
+  = simple_form_for :link, url: links_path, html: { id: "token-form" } do |f|
+    = f.input :public_token, as: :hidden
