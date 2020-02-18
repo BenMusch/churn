@@ -10,7 +10,7 @@ class LinksController < ApplicationController
     access_token = exchange_token_response.access_token
     transaction_response = PLAID_CLIENT.transactions.get(access_token, '2019-07-12', '2020-02-14')
     transactions = transaction_response.transactions
-    binding.pry
+    render json: transactions
   end
 
   private

@@ -150,3 +150,42 @@ Several common features and operational parameters can be set using environment 
 
 * Heroku for hosting.
 * CircleCI for continuous integration.
+
+## Data model
+
+Documenting the data model for future reference. Things here are probably going
+to need to be adapted as I build
+
+* `Institution`
+  * Any financial institution. Has a `name`, can have `cards`
+* `User`
+  * from devise
+* `Card`
+  * A card, has a `name`, belongs to an `Institution`
+* `Category`
+  * Any purchase category, received from Plaid. Can have a `parent_category` for
+    heirarchical relationships
+
+Now to the modeling of rewards. The main models here are `Rewards::Percentage`
+and `Rewards::Points`, which represent the mapping of a card to some rewards
+payout, scoped to category.
+
+For example, a card which gets 1% cash back on all purchases and 2% on dining
+would have two instantiations of `Rewards::Percentage`, one for the 1% on all
+purchases and one for the 2% on just dining
+
+* `Rewards::Filter`
+  * This is a filter which controls which categories and vendors a reward can
+    apply to. Also used for `PointsPayouts` to control where points are spent
+* `Rewards::Percentage`
+  * As mentioned above, one instance for each filter/card combo
+* `Rewards::Points`
+  * Same as `Rewards::Percentage`, but collects a `Rewards::PointsType` instead
+    of cash back
+* `Rewards::PointsType`
+  * Some type of credit card points, e.g. Chase Sapphire points
+* `Rewards::PointsPayout`
+  * Some way to conver a `Rewards::PointsType` into real-world value. Also has a
+    `Rewards::Filter`. Example: Imagine CapitalOne Venture as a `PointsType`,
+    which has a value of `$.01` per point for cash back, but `$.02` per point on
+    JetBlue
