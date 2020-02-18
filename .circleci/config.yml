@@ -2,7 +2,7 @@ version: 2.1
 executors:
   rails:
     docker:
-      - image: circleci/ruby:2.5.1-node-browsers
+      - image: circleci/ruby:2.6.5-node-browsers
         environment:
           BUNDLE_JOBS: 4
           BUNDLE_PATH: vendor/bundle
@@ -27,9 +27,7 @@ commands:
       - run:
           name: Install gems and remove unused gems
           command: |
-            sudo yes | sudo gem uninstall -i /usr/local/lib/ruby/gems/2.5.0 bundler
-            echo 'here!'
-            sudo gem install bundler -v 2.1.4
+            gem install bundler
             bundle check || bundle install
             bundle clean --force
       - save_cache:
