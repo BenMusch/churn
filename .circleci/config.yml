@@ -27,7 +27,7 @@ commands:
       - run:
           name: Install gems and remove unused gems
           command: |
-            yes | gem uninstall -i /usr/local/lib/ruby/gems/2.5.0 bundler
+            sudo yes | gem uninstall -i /usr/local/lib/ruby/gems/2.5.0 bundler
             gem install bundler -v 2.1.4
             bundle check || bundle install
             bundle clean --force
