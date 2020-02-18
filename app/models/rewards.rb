@@ -1,5 +1,5 @@
 module Rewards
   def self.table_name_prefix
-    'rewards_'
+    "rewards_"
   end
 end

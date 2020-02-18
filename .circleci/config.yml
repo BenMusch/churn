@@ -68,6 +68,7 @@ commands:
       - run:
           name: Run RSpec tests in parallel
           command: |
+            cp .env.test .env
             circleci tests glob "spec/**/*_spec.rb" > /tmp/rspec_files
 
             TEST_FILES=$(circleci tests split --split-by=timings --timings-type=filename < /tmp/rspec_files)

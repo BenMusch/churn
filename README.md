@@ -1,5 +1,7 @@
 # Churn
 
+[![CircleCI](https://circleci.com/gh/BenMusch/churn.svg?style=svg)](https://circleci.com/gh/BenMusch/churn)
+
 ...
 
 Generated with [Raygun](https://github.com/carbonfive/raygun).
