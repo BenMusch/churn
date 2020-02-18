@@ -6,6 +6,7 @@ ruby "2.5.1"
 
 # Back-endy
 gem "bootsnap", require: false
+gem "devise"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
