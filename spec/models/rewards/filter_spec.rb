@@ -4,7 +4,7 @@ def build_transaction(category, name)
   Transaction.new(account_id: "foo",
                   amount: 100,
                   category: category,
-                  date: Date.today,
+                  date: Time.zone.today,
                   name: name,
                   payment_channel: "special",
                   transaction_type: "special")

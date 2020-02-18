@@ -7,3 +7,16 @@ require:
 
 Rails:
   Enabled: true
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+Metrics/ParameterLists:
+  Enabled: false
+AllCops:
+  Exclude:
+    - 'config/initializers/simple_form_bootstrap.rb'
+    - 'node_modules/**/*'
+    - 'lib/templates/**/*'
+    - 'db/schema.rb'
+    - 'bin/*'
+    - 'config/initializers/devise.rb'

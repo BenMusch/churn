@@ -1,7 +1,8 @@
 class Rewards::Filter < ApplicationRecord
   has_many :filter_categories, dependent: :destroy,
                                class_name: "Rewards::FilterCategory",
-                               foreign_key: :rewards_filter_id
+                               foreign_key: :rewards_filter_id,
+                               inverse_of: :rewards_filters
   has_many :categories, through: :filter_categories
 
   validate :validate_vendor_filter_regex
