@@ -20,3 +20,4 @@ AllCops:
     - 'db/schema.rb'
     - 'bin/*'
     - 'config/initializers/devise.rb'
+    - 'vendor/**/*'
