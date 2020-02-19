@@ -30,6 +30,7 @@ end
 group :development, :test do
   gem "dotenv-rails"
   gem "factory_bot_rails"
+  gem "pry"
   gem "rspec-rails"
   gem "rspec_junit_formatter", require: false
   gem "rubocop", require: false
@@ -43,7 +44,6 @@ group :development do
   gem "binding_of_caller"
   gem "launchy"
   gem "listen"
-  gem "pry"
   gem "spring"
   gem "spring-commands-rspec"
   gem "spring-watcher-listen"

@@ -1,15 +1,5 @@
 require "rails_helper"
 
-def build_transaction(category, name)
-  Transaction.new(account_id: "foo",
-                  amount: 100,
-                  category: category,
-                  date: Time.zone.today,
-                  name: name,
-                  payment_channel: "special",
-                  transaction_type: "special")
-end
-
 RSpec.describe Rewards::Filter, type: :model do
   let(:root) { create(:category, name: "All purchases") }
   let(:food) { create(:category, name: "Food", parent_category: root) }
@@ -37,7 +27,7 @@ RSpec.describe Rewards::Filter, type: :model do
   describe "include?" do
     context "when it matches none of the categories but does match the vendor filter" do
       it "returns false" do
-        transaction = build_transaction(entertainment, "Uber")
+        transaction = build(:transaction, category: entertainment, name: "Uber")
         filter = build(:rewards_filter,
                        vendor_filter: ".*Uber.*",
                        categories: [fast_casual, fast_food])
@@ -47,7 +37,7 @@ RSpec.describe Rewards::Filter, type: :model do
 
     context "when it matches one of the categories but not the vendor filter" do
       it "returns false" do
-        transaction = build_transaction(entertainment, "Lyft")
+        transaction = build(:transaction, category: entertainment, name: "Lyft")
         filter = build(:rewards_filter,
                        vendor_filter: ".*Uber.*",
                        categories: [entertainment, fast_food])
@@ -57,7 +47,7 @@ RSpec.describe Rewards::Filter, type: :model do
 
     context "when it matches the vendor filter and a category" do
       it "returns true" do
-        transaction = build_transaction(entertainment, "Uber")
+        transaction = build(:transaction, category: entertainment, name: "Uber")
         filter = build(:rewards_filter,
                        vendor_filter: ".*Uber.*",
                        categories: [entertainment, fast_food])

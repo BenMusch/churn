@@ -4,7 +4,10 @@ class Rewards::Filter < ApplicationRecord
                                foreign_key: :rewards_filter_id,
                                inverse_of: :rewards_filter
   has_many :categories, through: :filter_categories
-
+  has_many :rewards_points_payouts, dependent: :destroy,
+                                    class_name: "Rewards::PointsPayout",
+                                    foreign_key: :rewards_filter_id,
+                                    inverse_of: :rewards_filter
   validate :validate_vendor_filter_regex
 
   def include?(transaction)

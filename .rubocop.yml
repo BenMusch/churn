@@ -12,6 +12,8 @@ Style/ClassAndModuleChildren:
   Enabled: false
 Metrics/ParameterLists:
   Enabled: false
+Style/BlockDelimiters:
+  Enabled: false
 AllCops:
   Exclude:
     - 'config/initializers/simple_form_bootstrap.rb'
