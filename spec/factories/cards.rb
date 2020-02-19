@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :card do
     name { "MyString" }
-    institution { nil }
+    institution { association(:institution) }
   end
 end
