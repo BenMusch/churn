@@ -13,6 +13,7 @@ javascript:
         // Optional, called when Link loads
       },
       onSuccess: function(public_token, metadata) {
+        $("#link_metadata").val(JSON.stringify(metadata))
         $('#link_public_token').val(public_token)
         $('#token-form').submit()
       },
@@ -20,11 +21,8 @@ javascript:
         console.error(err, metadata)
         alert('Error!')
       },
-      onEvent: console.log,
     });
-    console.log('hello??')
     $('#link-button').click(function(e) {
-      console.log('click!', e)
       handler.open();
     });
   })
@@ -34,4 +32,12 @@ javascript:
   br
   button#link-button.button Link an account!
   = simple_form_for :link, url: links_path, html: { id: "token-form" } do |f|
+    = f.input :metadata, as: :hidden
     = f.input :public_token, as: :hidden
+  - @accounts.each do |account|
+    .card
+      .card-body
+        h5.card-title
+          = account.name
+        h6.card-subtitle
+          = account.institution.name

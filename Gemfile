@@ -10,7 +10,9 @@ gem "devise"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
-gem "rails", "~> 6.0.2"
+
+# Most recent rails release is missing https://github.com/rails/rails/pull/38065
+gem "rails", git: "https://github.com/rails/rails", branch: "6-0-stable"
 
 # Front-endy
 gem "simple_form"

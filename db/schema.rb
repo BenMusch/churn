@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_19_053130) do
+ActiveRecord::Schema.define(version: 2020_02_22_180223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,20 @@ ActiveRecord::Schema.define(version: 2020_02_19_053130) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "linked_accounts", force: :cascade do |t|
+    t.bigint "institution_id", null: false
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.string "plaid_id"
+    t.string "plaid_type"
+    t.string "plaid_subtype"
+    t.string "mask"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["institution_id"], name: "index_linked_accounts_on_institution_id"
+    t.index ["user_id"], name: "index_linked_accounts_on_user_id"
   end
 
   create_table "rewards_filter_categories", force: :cascade do |t|
@@ -106,6 +120,8 @@ ActiveRecord::Schema.define(version: 2020_02_19_053130) do
 
   add_foreign_key "cards", "institutions"
   add_foreign_key "categories", "categories", column: "parent_category_id"
+  add_foreign_key "linked_accounts", "institutions"
+  add_foreign_key "linked_accounts", "users"
   add_foreign_key "rewards_filter_categories", "categories"
   add_foreign_key "rewards_filter_categories", "rewards_filters"
   add_foreign_key "rewards_percentages", "cards"
