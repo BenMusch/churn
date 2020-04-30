@@ -9,7 +9,7 @@
     "@rails/webpacker": "^4.2.2",
     "bootstrap": "^4.4.1",
     "core-js": "^3.5.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "regenerator-runtime": "^0.13.3"
   },
   "devDependencies": {
